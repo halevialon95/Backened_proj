@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assignment 8
+{% endblock %}
+
+{% block tohen %}
+
+    {{ super() }}
+    <div class="body">
+
+        <h2>I'm {{ name | default('n/a', true) | upper() }} {{ family_name | default('n/a', true) | lower() }}!</h2>
+
+        {% if first_name %}
+            <h3>My hobbies are:</h3>
+            <ol>
+                {% for h in hobbies %}
+                    <li>{{ h }}</li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>I'm very sorry, but I am unable to show you my hobbies.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}
