@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact Us {% endblock %}
+
+{% block tohen %}
+<h1>Sign Up Here</h1>
+    <div class="details">
+        <p>insert your details below</p>
+    </div>
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br><br>
+        <label for="birthday">birthdate:</label><br>
+        <input type="date" id="birthday" name="birthday"><br>
+        <label for="phoneNum">phone number</label><br>
+        <input type="number" id="phoneNum" name="phoneNum"><br><br>
+        <button id="signInButton">sign in</button>
+    </form>
+    <h1>Contact Us</h1>
+    <form>
+        <label for="name"> Your Name </label>
+        <input type="text" name="name" id="name" /> <br /><br />
+        <label for="Email"> Your Email Address </label>
+        <input type="text" name="Email" id="Email" /> <br /><br />
+        <label for="InputMessage"> Describe your request </label><br />
+        <textarea name="Input" id="InputMessage" cols="30" rows="6">
+        </textarea><br />
+        <button id="submitBtn">Submit</button>
+
+        <script>
+             function Func() {
+    const input = document.getElementById("phoneNum");
+    if (!inpObj.checkValidity()) {
+    document.getElementById("phone_val").innerHTML = input.valAlert;
+    } else {
+    	document.location.href = "CV1.HTML";
+       }
+    }
+        </script>
+    </form>
+{% endblock %}

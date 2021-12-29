@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assignment 9
+{% endblock %}
+
+{% block tohen %}
+
+ #   {{ super() }}
+        <h2>Search a user</h2>
+        <form action="/assignment9" method="GET">
+
+            Email: <input name="email" type="email">
+
+            <input type="submit">
+        </form>
+
+        {% if user_name %}
+            <h2> User from search: </h2>
+            <p> Name: {{ user_name }} <br>
+                Email: {{ email }}
+            </p>
+        {% endif %}
+
+        {% if users %}
+        <h2>Here is a ist of users:</h2>
+            {%  for key, value in user_list.items() %}
+            <li>
+                {{ key }}: <b>{{ value.get('name') }}</b> ({{ value.get('email') }})
+            </li>
+            {% endfor %}
+        {% endif %}
+
+
+        <h1>Dont forget to sign up here!</h1>
+        {% if session.user_name %}
+            <h3>Good to see you again  {{ session.user_name }}!</h3>
+            <form action="/logout">
+                    <input type="submit" value="Log out">
+            </form>
+        {% else %}
+            <form action="/assignment9" method="POST">
+                Username: <input name="user_name" type="text">
+
+                Password: <input name="password" type="password">
+
+                <input type="submit">
+            </form>
+        {% endif %}
+
+{% endblock %}
