@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assignment 10
+{% endblock %}
+
+{% block tohen %}
+    <div class="Content">
+
+
+        <h2>Insert form</h2>
+        <form action="/insert_user" method="POST">
+            Name: <input name="NAME" type="text"> <br><br>
+            Email: <input name="EMAIL" type="email"> <br><br>
+            <input type="submit" value="Insert">
+        </form>
+
+       <h2>Delete form</h2>
+        <form action="/delete_user" method="POST">
+            Name: <input name="NAME" type="text"> <br><br>
+            <input type="submit" value="Delete">
+        </form>
+
+        <h2>Update form</h2>
+        <form action="/update_user" method="POST">
+            Name: <input name="NAME" type="text"> <br><br>
+            New Email: <input name="NEW_MAIL" type="email"> <br><br>
+            <input type="submit" value="Update">
+        </form>
+
+
+        {% if list %}
+            <h2>List of some users:</h2>
+            <ul>
+                {% for user in USERS %}
+                <li>
+                    <b>name is:</b> {{ user.name }}, <b>email is:</b> {{ user.email }}
+                </li>
+                {% endfor %}
+            </ul>
+        <p>{{ message }}</p>
+        {% else %}
+        <br>
+        <form action="/user_list" method="GET">
+            <input type="submit" value="show list of users">
+        </form>
+
+        {% endif %}
+    </div>
+
+{% endblock %}
