@@ -52,6 +52,11 @@ def logout_func():
     session['user_name']=''
     return render_template('assignment9.html')
 
+
+#assignment10
+from pages.assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
 if __name__ == '__main__':
 
     app.run(debug=True)
