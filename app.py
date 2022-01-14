@@ -1,8 +1,11 @@
-from flask import Flask, redirect, url_for
+import json, requests
+
+from flask import redirect, url_for, Flask, app
 from flask import render_template, request, session
-app = Flask(__name__)
-app.secret_key = '123'
-users =  { 'user_1': {'user_name': 'Amir', 'email': 'amir82@gmail.com'},
+
+from my_db import JSN_FUNC
+
+users = { 'user_1': {'user_name': 'Amir', 'email': 'amir82@gmail.com'},
               'user_2': {'user_name': 'Yael', 'email': 'yael2243@gmail.com'},
               'user_3': {'user_name': 'Alon', 'email': 'alon95@gmail.com'},
               'user_4': {'user_name': 'Yonatan', 'email': 'amir82@gmail.com'},
@@ -53,10 +56,32 @@ def logout_func():
     return render_template('assignment9.html')
 
 
-#assignment10
+#10
 from pages.assignment10.assignment10 import assignment10
 app.register_blueprint(assignment10)
 
-if __name__ == '__main__':
+#11
+@app.route("/assignment11/users")
+def assignment11_page():
+    QUERY = "select * from users"
+    output_query = JSN_FUNC(query=QUERY)
+    return json.dumps(output_query)
 
+
+
+
+@app.route("/assignment11/outer_source", methods=['GET'])
+def assignment11_os_page():
+    if 'Num' in request.args:
+        Num = request.args['Num']
+        inp = request.get(url="https://reqres.in/api/users/{Num}")
+        inp = inp.json()
+        return render_template('assignment11-outer_source.html', user=inp['data'])
+    return render_template('assignment11-outer_source.html')
+
+
+
+if __name__ == '__main__':
+    app = Flask(__name__)
+    app.secret_key = '123'
     app.run(debug=True)
